@@ -12,6 +12,9 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+      - ./abja_kino_back/database/:/docker-entrypoint-initdb.d/
+    networks:
+      - abja-kino-internal
 
 
   abja-kino-back:
@@ -32,6 +35,8 @@ services:
       - abja-postgres
     ports:
       - "8080:8080"
+    networks:
+      - abja-kino-internal
 
   abja-kino-front:
     container_name: abja-kino-front
@@ -42,6 +47,24 @@ services:
       - "8081:8081"
     depends_on:
       - abja-kino-back
+    networks: 
+      - abja-kino-internal
+
+  nginx:
+    image: nginx:1.25
+    container_name: nginx-reverse-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+    depends_on:
+      - abja-kino-front
+    networks:
+      - abja-kino-internal
+      - abja-kino-external
+
     
 
 
@@ -50,5 +73,9 @@ volumes:
 
 
 networks:
-  default:
-    name: abja-kino-network
+  abja-kino-internal:
+  #  internal: true
+  abja-kino-external:
+
+
+    
