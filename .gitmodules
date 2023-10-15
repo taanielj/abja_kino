@@ -1,0 +1,6 @@
+[submodule "abja_kino_back"]
+	path = abja_kino_back
+	url = https://github.com/taanielj/abja_kino_back.git
+[submodule "abja_kino_front"]
+	path = abja_kino_front
+	url = https://github.com/taanielj/abja_kino_front.git
