@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  abja-postgres:
+    container_name: abja-postgres
+    image: postgres:16.0
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+
+  abja-kino-back:
+    container_name: abja-kino-back
+    build: ./abja_kino_back
+    environment:
+      # Spring
+      SPRING_DATASOURCE_URL: jdbc:postgresql://abja-postgres:5432/${POSTGRES_DATABASE}
+      SPRING_ADMIN_USERNAME: ${SPRING_ADMIN_USERNAME}
+      SPRING_ADMIN_PASSWORD: ${SPRING_ADMIN_PASSWORD}
+      SPRING_JWT_SECRET: ${SPRING_JWT_SECRET}
+
+      # Postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
+    depends_on:
+      - abja-postgres
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres-data:
+
+
