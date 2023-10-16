@@ -96,7 +96,7 @@ This repository contains the Docker Compose setup for the Abja Kino cinema appli
    ```
 
 4. **Access the Application**:
-   - Open a browser and navigate to `https://abjakino.duckdns.org/`.
+   - Click [here](https://abja-kino.duckdns.org) to access the application.
 
 
 
