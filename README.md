@@ -33,9 +33,50 @@ This repository contains the Docker Compose setup for the Abja Kino cinema appli
 
 * Register a domain name and set up SSL certificates. In this case, I used [DuckDNS](https://www.duckdns.org/). You can use [Certbot](https://certbot.eff.org/) to generate the TLS certificates (for HTTPS)
 
+* Generate a deployment keys for the repositories:
+    * Generate a key pair:
+    ```bash
+    ssh-keygen -t ed25519 -C "abja-kino-deployment-key" -f ~/.ssh/abja-kino-deployment-key
+    ssh-keygen -t ed25519 -C "abja-kino-back-key" -f ~/.ssh/abja-kino-back-key
+    ssh-keygen -t ed25519 -C "abja-kino-front-key" -f ~/.ssh/abja-kino-front-key
+    ```
+    ```
+    ```
+    ss
+    ```
+    * Add the public key to the respective repositories (e.g., `abja_kino_deployment`, `abja_kino_front`, `abja_kino_back`).
+    * Add the private keys to the server (e.g., `~/.ssh/abja-kino-deployment`).
+    * Add the following to `~/.ssh/config`:
+    ```
+    Host github.com-abja-kino-deployment
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/abja-kino-deployment-key
+
+    Host github.com-abja-kino-back
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/abja-kino-back-key
+
+    Host github.com-abja-kino-front
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/abja-kino-front-key
+
+    
+    ```
+    Set permission for .ssh folder and contents:
+    ```bash
+    chmod 700 ~/.ssh   # Sets permission for .ssh folder to 700 (allows read/write/execute for owner only (drwx------)
+    chmod 600 ~/.ssh/* # Sets permission for all files in .ssh folder to 600 (allows read/write for owner only (rw-------)
+    ls -la ~/.ssh      # Check permissions
+    ```
+
+
+
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/taanielj/abja_kino_deployment.git
+   git clone git@github.com-abja-kino-deployment:taanielj/abja_kino_deployment.git
    ```
 
     Then clone the submodules
