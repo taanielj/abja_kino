@@ -44,14 +44,11 @@ This repository contains the Docker Compose setup for the Abja Kino cinema appli
     ssh-keygen -t ed25519 -C "abja-kino-back-key" -f ~/.ssh/abja-kino-back-key
     ssh-keygen -t ed25519 -C "abja-kino-front-key" -f ~/.ssh/abja-kino-front-key
     ```
-    ```
-    ```
-    ss
-    ```
+    ```bash
     * Add the public key to the respective repositories (e.g., `abja_kino_deployment`, `abja_kino_front`, `abja_kino_back`).
     * Add the private keys to the server (e.g., `~/.ssh/abja-kino-deployment`).
     * Add the following to `~/.ssh/config`:
-    ```
+    ```bash
     Host github.com-abja-kino-deployment
         HostName github.com
         User git
@@ -67,7 +64,6 @@ This repository contains the Docker Compose setup for the Abja Kino cinema appli
         User git
         IdentityFile ~/.ssh/abja-kino-front-key
 
-    
     ```
     Set permission for .ssh folder and contents:
     ```bash
