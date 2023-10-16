@@ -6,7 +6,7 @@ This repository contains the Docker Compose setup for the Abja Kino cinema appli
 
 * Backend:
     - Spring Boot application with JWT stateless authentication for running the API
-    - localhost:8080 )(internal network)
+    - localhost:8080 (internal network)
     - Code repository: [abja_kino_back](https://www.github.com/taanielj/abja_kino_back)
 * Frontend:
     - Vue.js application for running the frontend
