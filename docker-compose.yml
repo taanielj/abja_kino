@@ -79,7 +79,7 @@ volumes:
 
 networks:
   abja-kino-internal:
-  #  internal: true
+    internal: true
   abja-kino-external:
 
 
