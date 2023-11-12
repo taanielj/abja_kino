@@ -25,6 +25,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://abja-postgres:5432/${POSTGRES_DATABASE}
       SPRING_ADMIN_USERNAME: ${SPRING_ADMIN_USERNAME}
       SPRING_ADMIN_PASSWORD: ${SPRING_ADMIN_PASSWORD}
+      SPRING_ADMIN_EMAIL: ${SPRING_ADMIN_EMAIL}
       SPRING_JWT_SECRET: ${SPRING_JWT_SECRET}
 
       # Postgres
@@ -43,8 +44,12 @@ services:
     build: ./abja_kino_front
     environment:
       - API_URL=${API_URL:-http://abja-kino-back:8080}
+      - CHOKIDAR_USEPOLLING=true
     ports:
       - "8081:8081"
+    volumes:
+      - ./abja_kino_front:/app # Mount the entire app directory
+      - /app/node_modules # Exclude node_modules to use the container's version
     depends_on:
       - abja-kino-back
     networks: 
