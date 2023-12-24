@@ -59,8 +59,8 @@ services:
     image: nginx:1.25
     container_name: nginx-reverse-proxy
     ports:
-      - "80:80"
-      - "443:443"
+      - "${NGINX_PORT_HTTP-80}:80"
+      - "${NGINX_PORT_HTTPS-443}:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - /etc/letsencrypt:/etc/letsencrypt
