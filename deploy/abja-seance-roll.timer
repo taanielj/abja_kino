@@ -1,0 +1,9 @@
+[Unit]
+Description=abja-kino: keep demo screenings upcoming
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=abja-kino: roll demo screenings into the future
+After=docker.service
+
+[Service]
+Type=oneshot
+User=abja
+WorkingDirectory=/home/abja/abja_kino_deployment
+ExecStart=/home/abja/abja_kino_deployment/deploy/roll-seances.sh
