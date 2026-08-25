@@ -1,0 +1,10 @@
+[Unit]
+Description=abja-kino: pull + deploy
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=abja
+WorkingDirectory=/home/abja/abja_kino_deployment
+ExecStart=/home/abja/abja_kino_deployment/deploy/deploy.sh
